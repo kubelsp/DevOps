@@ -3,7 +3,7 @@
 
 ```shell
 docker build -t devops-go:v1 .
-
+```
 
 ```shell
 docker run -d --name nginx-go \
@@ -12,3 +12,4 @@ docker run -d --name nginx-go \
     -p 8080:80 \
     -p 22333:22333 \
     devops-go:v1
+```
