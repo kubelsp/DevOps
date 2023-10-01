@@ -1,0 +1,402 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset='UTF-8'>
+    <meta charset='US-ASCII'>
+    <meta name='viewport' content='width=device-width initial-scale=1'>
+
+    <!-- new add -->
+    <title>WebTerminal</title>
+    <link rel="stylesheet" href="./node_modules/xterm/css/xterm.css"/>
+    <script src="./node_modules/xterm/lib/xterm.js"></script>
+    <!-- new add -->
+
+    <link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext'
+          rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" href="./main.css"/>
+
+    <style type='text/css'>
+        /* new add */
+        #terminal {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: calc(50% - 10px); /* 宽度为屏幕宽度的一半 */
+            height: 100%; /* 高度自适应屏幕 */
+            border: 1px solid black;
+            padding: 10px;
+            margin: 0;
+        }
+
+        .click-exec {
+            display: none;
+            color: #FF359A; /* 文本颜色为粉色 */
+            margin-left: 20px; /* 左边距 */
+        }
+
+        .click-exec {
+            background-color: #FF359A;
+            border: 1px solid transparent;
+            border-radius: 3px;
+            box-shadow: rgba(255, 255, 255, .4) 0 1px 0 0 inset;
+            box-sizing: border-box;
+            color: #fff;
+            cursor: pointer;
+            display: inline-block;
+            font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans", sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 1.15385;
+            margin: 0;
+            outline: none;
+            padding: 8px .8em;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            vertical-align: baseline;
+            white-space: nowrap;
+        }
+
+        .click-exec:hover,
+        .click-exec:focus {
+            background-color: #FDA7DF;
+        }
+
+        .click-exec:focus {
+            box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+        }
+
+        .click-exec:active {
+            background-color: #FF359A;
+            box-shadow: none;
+        }
+
+        /* new add */
+
+
+
+
+</style><title></title>
+</head>
+<div>
+    <input type="text" id="username" placeholder="Username">
+    <input type="text" id="ip" placeholder="IP Address">
+    <button onclick="connect()">Connect</button>
+</div>
+<body class='typora-export'>
+<div class='typora-export-content'>
+    <div id='write' class=''><h3 id='4metrics-server'><span>4、metrics-server</span></h3>
+        <blockquote><p><a href='https://github.com/kubernetes-sigs/metrics-server' target='_blank' class='url'>https://github.com/kubernetes-sigs/metrics-server</a>
+        </p></blockquote>
+        <blockquote><p><span>版本：v0.6.4</span></p>
+            <p><span>k8s-v1.23.17</span></p></blockquote>
+        <figure>
+            <table>
+                <thead>
+                <tr>
+                    <th><span>Metrics Server</span></th>
+                    <th><span>Metrics API group/version</span></th>
+                    <th><span>Supported Kubernetes version</span></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><span>0.6.x</span></td>
+                    <td><code>metrics.k8s.io/v1beta1</code></td>
+                    <td><span>1.19+</span></td>
+                </tr>
+                <tr>
+                    <td><span>0.5.x</span></td>
+                    <td><code>metrics.k8s.io/v1beta1</code></td>
+                    <td><span>*1.8+</span></td>
+                </tr>
+                <tr>
+                    <td><span>0.4.x</span></td>
+                    <td><code>metrics.k8s.io/v1beta1</code></td>
+                    <td><span>*1.8+</span></td>
+                </tr>
+                <tr>
+                    <td><span>0.3.x</span></td>
+                    <td><code>metrics.k8s.io/v1beta1</code></td>
+                    <td><span>1.8-1.21</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </figure>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline"
+                                                                 style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                class="cm-builtin">mkdir</span> <span class="cm-attribute">-p</span> ~/metrics-server</span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 22px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 22px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[0].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline"
+                                                                 style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                class="cm-builtin">wget</span> <span class="cm-attribute">-O</span> ~/metrics-server/components.yaml https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.6.4/components.yaml</span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 44px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 44px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[1].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline"
+                                                                          style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                class="cm-comment">#1、添加"- --kubelet-insecure-tls"参数（匹配行后）</span></span></pre></div><div class=""
+                                                                                                         style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                class="cm-builtin">sed</span> <span class="cm-attribute">-i</span> <span class="cm-string">'/15s/a\        - --kubelet-insecure-tls'</span> ~/metrics-server/components.yaml</span></pre></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span cm-text=""
+                                                                                                        cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                             style="padding-right: 0.1px;"><span
+                class="cm-comment">#2、 修改镜像（默认谷歌k8s.gcr.io）</span></span></pre><div class=""
+                                                                                    style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                class="cm-builtin">sed</span> <span class="cm-attribute">-i</span> <span class="cm-string">'s/registry.k8s.io\/metrics-server/dyrnq/g'</span> ~/metrics-server/components.yaml</span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 154px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 154px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[2].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline"
+                                                                 style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">kubectl apply <span
+                class="cm-attribute">-f</span> ~/metrics-server/components.yaml</span></pre></div><div class=""
+                                                                                                       style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span cm-text=""
+                                                                                                        cm-zwsp="">
+</span></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line "
+                                                                         role="presentation"><span role="presentation"
+                                                                                                   style="padding-right: 0.1px;">kubectl <span
+                class="cm-builtin">get</span> pods <span class="cm-attribute">-n</span> kube-system <span
+                class="cm-attribute">-l</span> <span class="cm-def">k8s-app</span><span class="cm-operator">=</span>metrics-server</span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 66px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 66px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[3].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline"
+                                                                 style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">kubectl <span
+                class="cm-builtin">top</span> <span class="cm-builtin">node</span></span></pre></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span cm-text=""
+                                                                                                        cm-zwsp="">
+</span></span></pre><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">kubectl <span class="cm-builtin">top</span> pod <span
+                class="cm-attribute">-A</span></span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 66px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 66px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[4].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"
+             style="break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap"
+                                               lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline"
+                                                                          style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">[root@k8s-master ~/metrics-server]<span
+                class="cm-comment"># kubectl top node</span></span></pre></div><pre class=" CodeMirror-line "
+                                                                                    role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">NAME &nbsp; &nbsp; &nbsp; &nbsp; CPU(cores) &nbsp; CPU% &nbsp; MEMORY(bytes) &nbsp; MEMORY%</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">k8s-master &nbsp; 211m &nbsp; &nbsp; &nbsp; &nbsp; <span
+                class="cm-number">5</span>% &nbsp; &nbsp; 1882Mi &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span
+                class="cm-number">24</span>%</span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation"
+                style="padding-right: 0.1px;">k8s-node1 &nbsp;  155m &nbsp; &nbsp; &nbsp; &nbsp; <span
+                class="cm-number">3</span>% &nbsp; &nbsp; 985Mi &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span
+                class="cm-number">12</span>%</span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation"
+                style="padding-right: 0.1px;">k8s-node2 &nbsp;  164m &nbsp; &nbsp; &nbsp; &nbsp; <span
+                class="cm-number">4</span>% &nbsp; &nbsp; 1249Mi &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span
+                class="cm-number">15</span>%</span></pre><div class="" style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">[root@k8s-master ~/metrics-server]<span
+                class="cm-comment"># kubectl top pod</span></span></pre></div><pre class=" CodeMirror-line "
+                                                                                   role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">NAME &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CPU(cores) &nbsp; MEMORY(bytes)</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">calico-kube-controllers-646b6595d5-5fgj9 &nbsp; 2m &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 28Mi</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">calico-node-c8pfd &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  33m &nbsp; &nbsp; &nbsp; &nbsp;  137Mi</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">calico-node-ck4kt &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  36m &nbsp; &nbsp; &nbsp; &nbsp;  137Mi</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">calico-node-gw7xs &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  37m &nbsp; &nbsp; &nbsp; &nbsp;  138Mi</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">coredns-6d8c4cb4d-mk5f2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  4m &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 22Mi</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">coredns-6d8c4cb4d-r7xfv &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  4m &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 22Mi</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">etcd-k8s-master &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  17m &nbsp; &nbsp; &nbsp; &nbsp;  86Mi</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">kube-apiserver-k8s-master &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  52m &nbsp; &nbsp; &nbsp; &nbsp;  422Mi</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">kube-controller-manager-k8s-master &nbsp; &nbsp; &nbsp; &nbsp; 20m &nbsp; &nbsp; &nbsp; &nbsp;  73Mi</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">kube-proxy-fzpcp &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 8m &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 30Mi</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">kube-proxy-l6jhz &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 4m &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 32Mi</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">kube-proxy-m6s7s &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 10m &nbsp; &nbsp; &nbsp; &nbsp;  30Mi</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">kube-scheduler-k8s-master &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  3m &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 25Mi</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">metrics-server-848b755f94-jv6mq &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  4m &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 21Mi</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">[root@k8s-master ~/metrics-server]<span
+                class="cm-comment"># kubectl get node</span></span></pre><pre class=" CodeMirror-line "
+                                                                              role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">NAME &nbsp; &nbsp; &nbsp; &nbsp; STATUS &nbsp; ROLES &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  AGE &nbsp; VERSION</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">k8s-master &nbsp; Ready &nbsp;  control-plane,master &nbsp; 43d &nbsp; v1.23.17</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">k8s-node1 &nbsp;  Ready &nbsp;  &lt;none&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 43d &nbsp; v1.23.17</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">k8s-node2 &nbsp;  Ready &nbsp;  &lt;none&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 43d &nbsp; v1.23.17</span></pre><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">[root@k8s-master ~/metrics-server]<span
+                class="cm-comment">#</span></span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 594px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 594px;"></div></div></div></pre>
+    </div>
+</div>
+
+
+
+<!-- 添加更多按钮 -->
+</p >
+<div id="terminal"></div> <!-- 用于显示xterm.js终端的元素 -->
+
+<script>
+    const term = new Terminal({
+        cursorBlink: true, // 光标闪烁
+        rows: parseInt(50),
+        cols: parseInt(150),
+    });
+
+    term.open(document.querySelector('#terminal')); // 挂载
+
+    const socket = new WebSocket(`ws://127.0.0.1:22333/webterminal`); // 创建WebSocket连接
+
+    term.onData((data) => { // 网页xterm窗口中有输入的数据
+        socket.send(data); // 通过WebSocket发送给服务器
+    });
+
+    socket.onmessage = (event) => { // 收到来自服务器的WebSocket消息
+        term.write(event.data); // 向xterm对象写入数据
+    };
+
+    function sendMessage(message) {
+
+        message += '\r'; // 添加回车符
+        socket.send(message); // 发送命令
+    }
+
+  function connect() {
+      var usernameInput = document.getElementById("username");
+      var ipInput = document.getElementById("ip");
+      var username = usernameInput.value;
+      var ip = ipInput.value;
+      var connectMsg = JSON.stringify({
+          "username": username,
+          "ip": ip
+      });
+      socket.send(connectMsg);
+  }
+
+
+    // 显示按钮下方的提示(鼠标悬停时显示)
+    function showExecTip(button) {
+        const execTip = button.nextElementSibling;
+        execTip.style.display = 'inline';
+    }
+
+    // 隐藏按钮下方的提示(鼠标移开时隐藏)
+    function hideExecTip(button) {
+        const execTip = button.nextElementSibling;
+        execTip.style.display = 'none';
+    }
+
+    // 执行命令并显示提示
+    function executeCommand(button, command) {
+        console.log(command)
+        sendMessage(command);
+        showExecTip(button);
+    }
+</script>
+</body>
+
+</html>

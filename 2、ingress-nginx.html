@@ -1,0 +1,527 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset='UTF-8'>
+    <meta charset='US-ASCII'>
+    <meta name='viewport' content='width=device-width initial-scale=1'>
+
+    <!-- new add -->
+    <title>WebTerminal</title>
+    <link rel="stylesheet" href="./node_modules/xterm/css/xterm.css"/>
+    <script src="./node_modules/xterm/lib/xterm.js"></script>
+    <!-- new add -->
+
+    <link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext'
+          rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" href="./main.css"/>
+
+    <style type='text/css'>
+        /* new add */
+        #terminal {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: calc(50% - 10px); /* 宽度为屏幕宽度的一半 */
+            height: 100%; /* 高度自适应屏幕 */
+            border: 1px solid black;
+            padding: 10px;
+            margin: 0;
+        }
+
+        .click-exec {
+            display: none;
+            color: #FF359A; /* 文本颜色为粉色 */
+            margin-left: 20px; /* 左边距 */
+        }
+
+        .click-exec {
+            background-color: #FF359A;
+            border: 1px solid transparent;
+            border-radius: 3px;
+            box-shadow: rgba(255, 255, 255, .4) 0 1px 0 0 inset;
+            box-sizing: border-box;
+            color: #fff;
+            cursor: pointer;
+            display: inline-block;
+            font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans", sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 1.15385;
+            margin: 0;
+            outline: none;
+            padding: 8px .8em;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            vertical-align: baseline;
+            white-space: nowrap;
+        }
+
+        .click-exec:hover,
+        .click-exec:focus {
+            background-color: #FDA7DF;
+        }
+
+        .click-exec:focus {
+            box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+        }
+
+        .click-exec:active {
+            background-color: #FF359A;
+            box-shadow: none;
+        }
+
+        /* new add */
+
+
+
+</style><title></title>
+</head>
+
+<div>
+    <input type="text" id="username" placeholder="Username">
+    <input type="text" id="ip" placeholder="IP Address">
+    <button onclick="connect()">Connect</button>
+</div>
+
+<body class='typora-export'>
+<div class='typora-export-content'>
+    <div id='write' class=''><h3 id='2ingress-nginx'><span>2、ingress-nginx</span></h3>
+        <p><span>helm安装 ingress-nginx（k8s-master边缘节点）</span></p>
+        <blockquote><p><span>master（ingress-nginx边缘节点）</span></p>
+            <p><span>chart version：4.5.2  （k8s：1.26, 1.25, 1.24, 1.23）</span></p>
+            <p><span>当前版本：k8s-v1.23.17</span></p></blockquote>
+        <p><a href='https://kgithub.com/kubernetes/ingress-nginx' target='_blank' class='url'>https://kgithub.com/kubernetes/ingress-nginx</a>
+        </p>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline"
+                                                                 style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx</span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 22px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 22px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[0].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline"
+                                                                 style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">helm repo update</span></pre></div><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line "
+                                                                         role="presentation"><span role="presentation"
+                                                                                                   style="padding-right: 0.1px;">helm search repo ingress-nginx/ingress-nginx</span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 66px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 66px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[1].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline"
+                                                                          style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">helm pull ingress-nginx/ingress-nginx <span
+                class="cm-attribute">--version</span> <span class="cm-number">4</span>.5.2 <span class="cm-attribute">--untar</span></span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 22px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 22px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[2].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded md-focus" spellcheck="false"
+             lang="shell" style="break-inside: unset;"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap CodeMirror-focused" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 75px; left: 75.203125px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation" style=""><pre class=" CodeMirror-line "
+                                                                          role="presentation"><span role="presentation"
+                                                                                                    style="padding-right: 0.1px;"><span
+                class="cm-builtin">cat</span> &gt; ~/ingress-nginx/values-prod.yaml &lt;&lt; EOF</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">controller:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  name: controller</span></pre><div
+                class="CodeMirror-activeline" style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  image:</span></pre></div><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">    registry: dyrnq</span></pre></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    image: controller</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    tag: <span
+                class="cm-string">"v1.6.4"</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">    digest:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    pullPolicy: IfNotPresent</span></pre><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line "
+                                                                         role="presentation"><span role="presentation"
+                                                                                                   style="padding-right: 0.1px;">  dnsPolicy: ClusterFirstWithHostNet</span></pre></div><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line "
+                                                                         role="presentation"><span role="presentation"
+                                                                                                   style="padding-right: 0.1px;">  hostNetwork: <span
+                class="cm-atom">true</span></span></pre></div><div class="" style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span
+                cm-text="" cm-zwsp="">
+</span></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line "
+                                                                         role="presentation"><span role="presentation"
+                                                                                                   style="padding-right: 0.1px;">  publishService:  <span
+                class="cm-comment"># hostNetwork 模式下设置为false，通过节点IP地址上报ingress status数据</span></span></pre></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    enabled: <span
+                class="cm-atom">false</span></span></pre><div class="" style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span
+                cm-text="" cm-zwsp="">
+</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                                   style="padding-right: 0.1px;">  kind: DaemonSet</span></pre><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line "
+                                                                         role="presentation"><span role="presentation"
+                                                                                                   style="padding-right: 0.1px;">  tolerations:   <span
+                class="cm-comment"># kubeadm 安装的集群默认情况下 k8s-master 是有污点，需要容忍这个污点才可以部署</span></span></pre></div><div class=""
+                                                                                                                    style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  <span
+                class="cm-attribute">-</span> key: <span
+                class="cm-string">"node-role.kubernetes.io/k8s-master"</span></span></pre></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    operator: <span
+                class="cm-string">"Equal"</span></span></pre><div class="" style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    effect: <span
+                class="cm-string">"NoSchedule"</span></span></pre></div><div class="" style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span
+                cm-text="" cm-zwsp="">
+</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                                   style="padding-right: 0.1px;">  nodeSelector:   <span
+                class="cm-comment"># 固定到k8s-master节点(自己master啥名字就写啥)</span></span></pre><pre class=" CodeMirror-line "
+                                                                                             role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">    kubernetes.io/hostname: <span class="cm-string">"k8s-master"</span></span></pre><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line "
+                                                                         role="presentation"><span role="presentation"
+                                                                                                   style="padding-right: 0.1px;">  <span
+                class="cm-builtin">service</span>:  <span class="cm-comment"># HostNetwork 模式不需要创建service</span></span></pre></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    enabled: <span
+                class="cm-atom">false</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                             style="padding-right: 0.1px;">  admissionWebhooks: <span
+                class="cm-comment"># 强烈建议开启 admission webhook</span></span></pre><pre class=" CodeMirror-line "
+                                                                                      role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">    enabled: <span class="cm-atom">true</span></span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    patch:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">      enabled: <span
+                class="cm-atom">true</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">      image:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        registry: dyrnq</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        image: kube-webhook-certgen</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        tag: v20220916-gd32f8c343</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        digest:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        pullPolicy: IfNotPresent</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span
+                cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                             style="padding-right: 0.1px;">defaultBackend:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  enabled: <span
+                class="cm-atom">true</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">  name: defaultbackend</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  image:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    registry: dyrnq</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    image: defaultbackend-amd64</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    tag: <span
+                class="cm-string">"1.5"</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">    digest:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    pullPolicy: IfNotPresent</span></pre><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">EOF</span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 1166px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 1166px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[3].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline"
+                                                                 style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">kubectl create ns ingress-nginx</span></pre></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span cm-text=""
+                                                                                                        cm-zwsp="">
+</span></span></pre><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">helm upgrade <span
+                class="cm-attribute">--install</span> <span class="cm-attribute">--namespace</span> ingress-nginx ingress-nginx <span
+                class="cm-attribute">-f</span> ./values-prod.yaml .</span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 88px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 88px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[4].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <p><span>卸载</span></p>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline"
+                                                                 style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">[root@k8s-master ~/ingress-nginx]<span
+                class="cm-comment"># helm delete ingress-nginx -n ingress-nginx</span></span></pre></div><div class=""
+                                                                                                              style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span cm-text=""
+                                                                                                        cm-zwsp="">
+</span></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line "
+                                                                         role="presentation"><span role="presentation"
+                                                                                                   style="padding-right: 0.1px;">[root@k8s-master ~/ingress-nginx]<span
+                class="cm-comment"># helm ls -n ingress-nginx</span></span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 66px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 66px;"></div></div></div></pre>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline"
+                                                                 style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">kubectl <span
+                class="cm-builtin">get</span> po <span class="cm-attribute">-owide</span> <span
+                class="cm-attribute">-n</span> ingress-nginx</span></pre></div><div class=""
+                                                                                    style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span cm-text=""
+                                                                                                        cm-zwsp="">
+</span></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line "
+                                                                         role="presentation"><span role="presentation"
+                                                                                                   style="padding-right: 0.1px;">kubectl <span
+                class="cm-builtin">get</span> svc <span class="cm-attribute">-n</span> ingress-nginx</span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 66px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 66px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[6].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"
+             style="break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap"
+                                               lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline"
+                                                                          style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">[root@k8s-master ~/ingress-nginx]<span
+                class="cm-comment"># kubens ingress-nginx</span></span></pre></div><pre class=" CodeMirror-line "
+                                                                                        role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">Context <span class="cm-string">"kubernetes-admin@kubernetes"</span> modified.</span></pre><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">Active namespace is <span class="cm-string">"ingress-nginx"</span>.</span></pre></div><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">[root@k8s-master ~/ingress-nginx]<span
+                class="cm-comment"># kubectl get po -owide</span></span></pre></div><pre class=" CodeMirror-line "
+                                                                                         role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">NAME &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  READY &nbsp; STATUS &nbsp;  RESTARTS &nbsp; &nbsp;  AGE &nbsp; &nbsp; IP &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; NODE &nbsp; &nbsp; &nbsp; &nbsp; NOMINATED NODE &nbsp; READINESS GATES</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">ingress-nginx-controller-j6dp4 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span
+                class="cm-number">1</span>/1 &nbsp; &nbsp; Running &nbsp; <span class="cm-number">0</span> &nbsp; 2m53s &nbsp; <span
+                class="cm-number">192</span>.168.1.201 &nbsp;  k8s-master &nbsp; &lt;none&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;none&gt;</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">ingress-nginx-defaultbackend-59d67dfdb9-z58j4 &nbsp; <span
+                class="cm-number">1</span>/1 &nbsp; &nbsp; Running &nbsp; <span class="cm-number">0</span> &nbsp; 3m &nbsp; &nbsp; &nbsp;<span
+                class="cm-number">10</span>.244.235.247 &nbsp; k8s-master &nbsp; &lt;none&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;none&gt;</span></pre><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">[root@k8s-master ~/ingress-nginx]<span
+                class="cm-comment"># kubectl get svc</span></span></pre></div><pre class=" CodeMirror-line "
+                                                                                   role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">NAME &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; TYPE &nbsp; &nbsp; &nbsp;  CLUSTER-IP &nbsp; &nbsp;  EXTERNAL-IP &nbsp; PORT(S) &nbsp; AGE</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">ingress-nginx-controller-admission &nbsp; ClusterIP &nbsp; <span
+                class="cm-number">10</span>.100.59.127 &nbsp; &lt;none&gt; &nbsp; &nbsp; &nbsp; &nbsp;<span
+                class="cm-number">443</span>/TCP &nbsp; 23m</span></pre><pre class=" CodeMirror-line "
+                                                                             role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">ingress-nginx-defaultbackend &nbsp; &nbsp; &nbsp; &nbsp; ClusterIP &nbsp; <span
+                class="cm-number">10</span>.107.38.196 &nbsp; &lt;none&gt; &nbsp; &nbsp; &nbsp; &nbsp;<span
+                class="cm-number">80</span>/TCP &nbsp;  23m</span></pre><pre class=" CodeMirror-line "
+                                                                             role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">[root@k8s-master ~/ingress-nginx]<span
+                class="cm-comment"># netstat -tnlp |grep 443</span></span></pre><pre class=" CodeMirror-line "
+                                                                                     role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">tcp &nbsp; &nbsp; &nbsp; &nbsp;<span
+                class="cm-number">0</span> &nbsp; &nbsp; &nbsp;<span class="cm-number">0</span> <span class="cm-number">0</span>.0.0.0:443 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span
+                class="cm-number">0</span>.0.0.0:* &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; LISTEN &nbsp; &nbsp; &nbsp;<span
+                class="cm-number">2306361</span>/nginx: mast</span></pre><pre class=" CodeMirror-line "
+                                                                              role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">tcp6 &nbsp; &nbsp; &nbsp; <span
+                class="cm-number">0</span> &nbsp; &nbsp; &nbsp;<span class="cm-number">0</span> :::6443 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :::* &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  LISTEN &nbsp; &nbsp; &nbsp;<span
+                class="cm-number">2360</span>/kube-apiserver</span></pre><pre class=" CodeMirror-line "
+                                                                              role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">tcp6 &nbsp; &nbsp; &nbsp; <span
+                class="cm-number">0</span> &nbsp; &nbsp; &nbsp;<span class="cm-number">0</span> :::8443 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :::* &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  LISTEN &nbsp; &nbsp; &nbsp;<span
+                class="cm-number">2306341</span>/nginx-ingre</span></pre><pre class=" CodeMirror-line "
+                                                                              role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">tcp6 &nbsp; &nbsp; &nbsp; <span
+                class="cm-number">0</span> &nbsp; &nbsp; &nbsp;<span class="cm-number">0</span> :::443 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  :::* &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  LISTEN &nbsp; &nbsp; &nbsp;<span
+                class="cm-number">2306361</span>/nginx: mast</span></pre><pre class=" CodeMirror-line "
+                                                                              role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">[root@k8s-master ~/ingress-nginx]<span
+                class="cm-comment"># netstat -tnlp |grep 80</span></span></pre><pre class=" CodeMirror-line "
+                                                                                    role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">tcp &nbsp; &nbsp; &nbsp; &nbsp;<span
+                class="cm-number">0</span> &nbsp; &nbsp; &nbsp;<span class="cm-number">0</span> <span class="cm-number">192</span>.168.1.201:2380 &nbsp; &nbsp; &nbsp;<span
+                class="cm-number">0</span>.0.0.0:* &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; LISTEN &nbsp; &nbsp; &nbsp;<span
+                class="cm-number">2331</span>/etcd</span></pre><div class="" style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">tcp &nbsp; &nbsp; &nbsp; &nbsp;<span
+                class="cm-number">0</span> &nbsp; &nbsp; &nbsp;<span class="cm-number">0</span> <span class="cm-number">0</span>.0.0.0:80 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span
+                class="cm-number">0</span>.0.0.0:* &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; LISTEN &nbsp; &nbsp; &nbsp;<span
+                class="cm-number">2306361</span>/nginx: mast</span></pre></div><pre class=" CodeMirror-line "
+                                                                                    role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">tcp6 &nbsp; &nbsp; &nbsp; <span
+                class="cm-number">0</span> &nbsp; &nbsp; &nbsp;<span class="cm-number">0</span> :::80 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :::* &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  LISTEN &nbsp; &nbsp; &nbsp;<span
+                class="cm-number">2306361</span>/nginx: mast</span></pre><div class="" style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">[root@k8s-master ~/ingress-nginx]<span
+                class="cm-comment">#</span></span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 748px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 748px;"></div></div></div></pre>
+    </div>
+</div>
+
+
+<!-- 添加更多按钮 -->
+</p >
+<div id="terminal"></div> <!-- 用于显示xterm.js终端的元素 -->
+
+<script>
+    const term = new Terminal({
+        cursorBlink: true, // 光标闪烁
+        rows: parseInt(50),
+        cols: parseInt(150),
+    });
+
+    term.open(document.querySelector('#terminal')); // 挂载
+
+    const socket = new WebSocket(`ws://127.0.0.1:22333/webterminal`); // 创建WebSocket连接
+
+    term.onData((data) => { // 网页xterm窗口中有输入的数据
+        socket.send(data); // 通过WebSocket发送给服务器
+    });
+
+    socket.onmessage = (event) => { // 收到来自服务器的WebSocket消息
+        term.write(event.data); // 向xterm对象写入数据
+    };
+
+
+  function connect() {
+      var usernameInput = document.getElementById("username");
+      var ipInput = document.getElementById("ip");
+      var username = usernameInput.value;
+      var ip = ipInput.value;
+      var connectMsg = JSON.stringify({
+          "username": username,
+          "ip": ip
+      });
+      socket.send(connectMsg);
+  }
+
+    function sendMessage(message) {
+
+        message += '\r'; // 添加回车符
+        socket.send(message); // 发送命令
+    }
+
+    // 显示按钮下方的提示(鼠标悬停时显示)
+    function showExecTip(button) {
+        const execTip = button.nextElementSibling;
+        execTip.style.display = 'inline';
+    }
+
+    // 隐藏按钮下方的提示(鼠标移开时隐藏)
+    function hideExecTip(button) {
+        const execTip = button.nextElementSibling;
+        execTip.style.display = 'none';
+    }
+
+    // 执行命令并显示提示
+    function executeCommand(button, command) {
+        console.log(command)
+        sendMessage(command);
+        showExecTip(button);
+    }
+</script>
+</body>
+
+</html>

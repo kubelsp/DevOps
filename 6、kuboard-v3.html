@@ -1,0 +1,595 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset='UTF-8'>
+    <meta charset='US-ASCII'>
+    <meta name='viewport' content='width=device-width initial-scale=1'>
+
+    <!-- new add -->
+    <title>WebTerminal</title>
+    <link rel="stylesheet" href="./node_modules/xterm/css/xterm.css"/>
+    <script src="./node_modules/xterm/lib/xterm.js"></script>
+    <!-- new add -->
+
+    <link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext'
+          rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" href="./main.css"/>
+
+    <style type='text/css'>
+        /* new add */
+        #terminal {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: calc(50% - 10px); /* 宽度为屏幕宽度的一半 */
+            height: 100%; /* 高度自适应屏幕 */
+            border: 1px solid black;
+            padding: 10px;
+            margin: 0;
+        }
+
+        .click-exec {
+            display: none;
+            color: #FF359A; /* 文本颜色为粉色 */
+            margin-left: 20px; /* 左边距 */
+        }
+
+        .click-exec {
+            background-color: #FF359A;
+            border: 1px solid transparent;
+            border-radius: 3px;
+            box-shadow: rgba(255, 255, 255, .4) 0 1px 0 0 inset;
+            box-sizing: border-box;
+            color: #fff;
+            cursor: pointer;
+            display: inline-block;
+            font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans", sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 1.15385;
+            margin: 0;
+            outline: none;
+            padding: 8px .8em;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            vertical-align: baseline;
+            white-space: nowrap;
+        }
+
+        .click-exec:hover,
+        .click-exec:focus {
+            background-color: #FDA7DF;
+        }
+
+        .click-exec:focus {
+            box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+        }
+
+        .click-exec:active {
+            background-color: #FF359A;
+            box-shadow: none;
+        }
+
+        /* new add */
+
+
+</style><title></title>
+</head>
+
+<div>
+    <input type="text" id="username" placeholder="Username">
+    <input type="text" id="ip" placeholder="IP Address">
+    <button onclick="connect()">Connect</button>
+</div>
+
+<body class='typora-export'>
+<div class='typora-export-content'>
+    <div id='write' class=''><h3 id='6kuboard-v3'><span>6、kuboard-v3</span></h3>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"
+             style="break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap"
+                                               lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline"
+                                                                          style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                class="cm-builtin">mkdir</span> <span class="cm-attribute">-p</span> ~/kuboard-v3-yml</span></pre></div><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line "
+                                                                         role="presentation"><span role="presentation"
+                                                                                                   style="padding-right: 0.1px;"><span
+                class="cm-builtin">cat</span> &gt; ~/kuboard-v3-yml/kuboard-v3.yaml &lt;&lt; <span class="cm-string">'EOF'</span></span></pre></div><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;"><span
+                class="cm-attribute">---</span></span></pre></div><div class="" style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">apiVersion: v1</span></pre></div><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">kind: Namespace</span></pre></div><div class=""
+                                                                                                         style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">metadata:</span></pre></div><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">  name: kuboard</span></pre></div><div class=""
+                                                                                                         style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span cm-text=""
+                                                                                                        cm-zwsp="">
+</span></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line "
+                                                                         role="presentation"><span role="presentation"
+                                                                                                   style="padding-right: 0.1px;"><span
+                class="cm-attribute">---</span></span></pre></div><div class="" style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">apiVersion: v1</span></pre></div><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">kind: ConfigMap</span></pre></div><div class=""
+                                                                                                         style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">metadata:</span></pre></div><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">  name: kuboard-v3-config</span></pre></div><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">  namespace: kuboard</span></pre></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">data:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  KUBOARD_ENDPOINT: <span
+                class="cm-string">'http://192.168.1.201:30080'</span></span></pre><pre class=" CodeMirror-line "
+                                                                                       role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">  KUBOARD_AGENT_SERVER_UDP_PORT: <span
+                class="cm-string">'30081'</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">  KUBOARD_AGENT_SERVER_TCP_PORT: <span
+                class="cm-string">'30081'</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">  KUBOARD_SERVER_LOGRUS_LEVEL: info </span></pre><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation"
+                style="padding-right: 0.1px;">  KUBOARD_AGENT_KEY: 32b7d6572c6255211b4eec9009e4a816</span></pre></div><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line "
+                                                                         role="presentation"><span role="presentation"
+                                                                                                   style="padding-right: 0.1px;"><span
+                class="cm-attribute">---</span></span></pre></div><pre class=" CodeMirror-line "
+                                                                       role="presentation"><span role="presentation"
+                                                                                                 style="padding-right: 0.1px;">apiVersion: apps/v1</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">kind: StatefulSet</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">metadata:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  name: kuboard-etcd</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  namespace: kuboard</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  labels:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    app: kuboard-etcd</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">spec:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  serviceName: kuboard-etcd</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  replicas: <span
+                class="cm-number">3</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">  selector:</span></pre><pre class=" CodeMirror-line "
+                                                                                               role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">    matchLabels:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">      app: kuboard-etcd</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  template:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    metadata:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">      name: kuboard-etcd</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">      labels:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        app: kuboard-etcd</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    spec:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">      containers:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">      <span
+                class="cm-attribute">-</span> name: kuboard-etcd</span></pre><pre class=" CodeMirror-line "
+                                                                                  role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">        image: swr.cn-east-2.myhuaweicloud.com/kuboard/etcd:v3.4.14</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        ports:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span
+                class="cm-attribute">-</span> containerPort: <span class="cm-number">2379</span></span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">          name: client</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span
+                class="cm-attribute">-</span> containerPort: <span class="cm-number">2380</span></span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">          name: peer</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        env:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span
+                class="cm-attribute">-</span> name: KUBOARD_ETCD_ENDPOINTS</span></pre><pre class=" CodeMirror-line "
+                                                                                            role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">          value: &gt;-</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">            kuboard-etcd-0.kuboard-etcd:2379,kuboard-etcd-1.kuboard-etcd:2379,kuboard-etcd-2.kuboard-etcd:2379</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span
+                class="cm-comment">#volumeMounts:</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">        <span class="cm-comment">#- name: data</span></span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">          <span
+                class="cm-comment">#mountPath: /data</span></span></pre><pre class=" CodeMirror-line "
+                                                                             role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">        command:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">          <span
+                class="cm-attribute">-</span> /bin/sh</span></pre><pre class=" CodeMirror-line "
+                                                                       role="presentation"><span role="presentation"
+                                                                                                 style="padding-right: 0.1px;">          <span
+                class="cm-attribute">-</span> <span class="cm-attribute">-c</span></span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">          <span
+                class="cm-attribute">-</span> |</span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">            <span class="cm-def">PEERS</span><span
+                class="cm-operator">=</span><span class="cm-string">"kuboard-etcd-0=http://kuboard-etcd-0.kuboard-etcd:2380,kuboard-etcd-1=http://kuboard-etcd-1.kuboard-etcd:2380,kuboard-etcd-2=http://kuboard-etcd-2.kuboard-etcd:2380"</span></span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">            exec etcd <span
+                class="cm-attribute">--name</span> <span class="cm-def">${HOSTNAME}</span> \</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">              <span
+                class="cm-attribute">--listen-peer-urls</span> http://0.0.0.0:2380 \</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">              <span
+                class="cm-attribute">--listen-client-urls</span> http://0.0.0.0:2379 \</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">              <span
+                class="cm-attribute">--advertise-client-urls</span> http://<span class="cm-def">${HOSTNAME}</span>.kuboard-etcd:2379 \</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">              <span
+                class="cm-attribute">--initial-advertise-peer-urls</span> http://<span class="cm-def">${HOSTNAME}</span>:2380 \</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">              <span
+                class="cm-attribute">--initial-cluster-token</span> kuboard-etcd-cluster-1 \</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">              <span
+                class="cm-attribute">--initial-cluster</span> <span class="cm-def">${PEERS}</span> \</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">              <span
+                class="cm-attribute">--initial-cluster-state</span> new \</span></pre><pre class=" CodeMirror-line "
+                                                                                           role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">              <span
+                class="cm-attribute">--data-dir</span> /data/kuboard.etcd</span></pre><pre class=" CodeMirror-line "
+                                                                                           role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">  <span
+                class="cm-comment">#volumeClaimTemplates:</span></span></pre><pre class=" CodeMirror-line "
+                                                                                  role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">  <span class="cm-comment">#- metadata:</span></span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">      <span
+                class="cm-comment">#name: data</span></span></pre><pre class=" CodeMirror-line "
+                                                                       role="presentation"><span role="presentation"
+                                                                                                 style="padding-right: 0.1px;">    <span
+                class="cm-comment">#spec:</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">      <span class="cm-comment">#storageClassName: please-provide-a-valid-StorageClass-name-here</span></span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">      <span
+                class="cm-comment">#accessModes: [ "ReadWriteMany" ]</span></span></pre><pre class=" CodeMirror-line "
+                                                                                             role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">      <span
+                class="cm-comment">#resources:</span></span></pre><pre class=" CodeMirror-line "
+                                                                       role="presentation"><span role="presentation"
+                                                                                                 style="padding-right: 0.1px;">        <span
+                class="cm-comment">#requests:</span></span></pre><pre class=" CodeMirror-line "
+                                                                      role="presentation"><span role="presentation"
+                                                                                                style="padding-right: 0.1px;">          <span
+                class="cm-comment">#storage: 5Gi</span></span></pre><div class="" style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span cm-text=""
+                                                                                                        cm-zwsp="">
+</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                                   style="padding-right: 0.1px;"><span
+                class="cm-attribute">---</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">apiVersion: v1</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">kind: Service</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">metadata:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  name: kuboard-etcd</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  namespace: kuboard</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">spec:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  type: ClusterIP</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  ports:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  <span
+                class="cm-attribute">-</span> port: <span class="cm-number">2379</span></span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    name: client</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  <span
+                class="cm-attribute">-</span> port: <span class="cm-number">2380</span></span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    name: peer</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  selector:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    app: kuboard-etcd</span></pre><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line "
+                                                                         role="presentation"><span role="presentation"
+                                                                                                   style="padding-right: 0.1px;"><span
+                class="cm-attribute">---</span></span></pre></div><pre class=" CodeMirror-line "
+                                                                       role="presentation"><span role="presentation"
+                                                                                                 style="padding-right: 0.1px;">apiVersion: apps/v1</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">kind: Deployment</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">metadata:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  annotations:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    deployment.kubernetes.io/revision: <span
+                class="cm-string">'9'</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">    k8s.kuboard.cn/ingress: <span class="cm-string">'false'</span></span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    k8s.kuboard.cn/service: NodePort</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    k8s.kuboard.cn/workload: kuboard-v3</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  labels:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    k8s.kuboard.cn/name: kuboard-v3</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  name: kuboard-v3</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  namespace: kuboard</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">spec:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  replicas: <span
+                class="cm-number">1</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">  selector:</span></pre><pre class=" CodeMirror-line "
+                                                                                               role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">    matchLabels:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">      k8s.kuboard.cn/name: kuboard-v3</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  template:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    metadata:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">      labels:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        k8s.kuboard.cn/name: kuboard-v3</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    spec:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">      containers:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span
+                class="cm-attribute">-</span> env:</span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">            <span class="cm-attribute">-</span> name: KUBOARD_ETCD_ENDPOINTS</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">              value: &gt;-</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">                kuboard-etcd-0.kuboard-etcd:2379,kuboard-etcd-1.kuboard-etcd:2379,kuboard-etcd-2.kuboard-etcd:2379</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">          envFrom:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">            <span
+                class="cm-attribute">-</span> configMapRef:</span></pre><pre class=" CodeMirror-line "
+                                                                             role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">                name: kuboard-v3-config</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">          image: <span
+                class="cm-string">'swr.cn-east-2.myhuaweicloud.com/kuboard/kuboard:v3'</span></span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">          imagePullPolicy: Always</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">          name: kuboard</span></pre><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                                   style="padding-right: 0.1px;"><span
+                class="cm-attribute">---</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">apiVersion: v1</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">kind: Service</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">metadata:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  annotations:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    k8s.kuboard.cn/workload: kuboard-v3</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  labels:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    k8s.kuboard.cn/name: kuboard-v3</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  name: kuboard-v3</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  namespace: kuboard</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">spec:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  ports:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span
+                class="cm-attribute">-</span> name: webui</span></pre><pre class=" CodeMirror-line "
+                                                                           role="presentation"><span role="presentation"
+                                                                                                     style="padding-right: 0.1px;">      nodePort: <span
+                class="cm-number">30080</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">      port: <span
+                class="cm-number">80</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">      protocol: TCP</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">      targetPort: <span
+                class="cm-number">80</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">    <span class="cm-attribute">-</span> name: agentservertcp</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">      nodePort: <span
+                class="cm-number">30081</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">      port: <span
+                class="cm-number">10081</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">      protocol: TCP</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">      targetPort: <span
+                class="cm-number">10081</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">    <span class="cm-attribute">-</span> name: agentserverudp</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">      nodePort: <span
+                class="cm-number">30081</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">      port: <span
+                class="cm-number">10081</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">      protocol: UDP</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">      targetPort: <span
+                class="cm-number">10081</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">  selector:</span></pre><pre class=" CodeMirror-line "
+                                                                                               role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">    k8s.kuboard.cn/name: kuboard-v3</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  sessionAffinity: None</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  type: NodePort</span></pre><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">EOF</span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 3696px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 3696px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[0].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline"
+                                                                 style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> kubectl apply <span
+                class="cm-attribute">-f</span> ~/kuboard-v3-yml/kuboard-v3.yaml</span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 22px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 22px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[1].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded md-focus" spellcheck="false" lang="shell"
+             style="break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap"
+                                               lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 581px; left: 33.203125px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation" style=""><div class="" style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                class="cm-builtin">cat</span> &gt; ~/kuboard-v3-yml/kuboard-Ingress.yml &lt;&lt; <span
+                class="cm-string">'EOF'</span></span></pre></div><pre class=" CodeMirror-line "
+                                                                      role="presentation"><span role="presentation"
+                                                                                                style="padding-right: 0.1px;">apiVersion: networking.k8s.io/v1</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">kind: Ingress</span></pre><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">metadata:</span></pre></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  name: kuboard-ingress</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  namespace: kuboard</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  annotations:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    nginx.ingress.kubernetes.io/ssl-redirect: <span
+                class="cm-string">'true'</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">spec:</span></pre><pre class=" CodeMirror-line "
+                                                                                         role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">  ingressClassName: nginx</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  rules:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  <span
+                class="cm-attribute">-</span> host: kuboard.huanghuanhui.cloud</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    http:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">      paths:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">      <span
+                class="cm-attribute">-</span> path: /</span></pre><pre class=" CodeMirror-line "
+                                                                       role="presentation"><span role="presentation"
+                                                                                                 style="padding-right: 0.1px;">        pathType: Prefix</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        backend:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">          <span
+                class="cm-builtin">service</span>:</span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">            name: kuboard-v3</span></pre><div class=""
+                                                                                                                style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">            port:</span></pre></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">              number: <span
+                class="cm-number">80</span></span></pre><div class="" style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span cm-text=""
+                                                                                                        cm-zwsp="">
+</span></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line "
+                                                                         role="presentation"><span role="presentation"
+                                                                                                   style="padding-right: 0.1px;">  tls:</span></pre></div><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">  <span
+                class="cm-attribute">-</span> hosts:</span></pre></div><div class="" style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span
+                class="cm-attribute">-</span> kuboard.huanghuanhui.cloud</span></pre></div><div class=""
+                                                                                                style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    secretName: kuboard-ingress-tls</span></pre></div><div
+                class="CodeMirror-activeline" style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">EOF</span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 594px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 594px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[2].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline"
+                                                                 style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">kubectl create secret <span
+                class="cm-attribute">-n</span> kuboard \</span></pre></div><div class="" style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">tls kuboard-ingress-tls \</span></pre></div><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;"><span class="cm-attribute">--key</span><span
+                class="cm-operator">=</span>/root/ssl/huanghuanhui.cloud_nginx/huanghuanhui.cloud.key \</span></pre></div><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;"><span class="cm-attribute">--cert</span><span
+                class="cm-operator">=</span>/root/ssl/huanghuanhui.cloud_nginx/huanghuanhui.cloud_bundle.crt</span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 88px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 88px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[3].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline"
+                                                                 style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> kubectl apply <span
+                class="cm-attribute">-f</span> ~/kuboard-v3-yml/kuboard-Ingress.yml</span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 22px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 22px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[4].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <blockquote><p><span>访问地址：kuboard.huanghuanhui.cloud</span></p>
+            <p><span>用户密码：admin、Kuboard123</span></p></blockquote>
+    </div>
+</div>
+
+
+
+
+<!-- 添加更多按钮 -->
+</p >
+<div id="terminal"></div> <!-- 用于显示xterm.js终端的元素 -->
+
+<script>
+    const term = new Terminal({
+        cursorBlink: true, // 光标闪烁
+        rows: parseInt(50),
+        cols: parseInt(150),
+    });
+
+    term.open(document.querySelector('#terminal')); // 挂载
+
+    const socket = new WebSocket(`ws://127.0.0.1:22333/webterminal`); // 创建WebSocket连接
+
+    term.onData((data) => { // 网页xterm窗口中有输入的数据
+        socket.send(data); // 通过WebSocket发送给服务器
+    });
+
+    socket.onmessage = (event) => { // 收到来自服务器的WebSocket消息
+        term.write(event.data); // 向xterm对象写入数据
+    };
+
+    function sendMessage(message) {
+
+        message += '\r'; // 添加回车符
+        socket.send(message); // 发送命令
+    }
+
+  function connect() {
+      var usernameInput = document.getElementById("username");
+      var ipInput = document.getElementById("ip");
+      var username = usernameInput.value;
+      var ip = ipInput.value;
+      var connectMsg = JSON.stringify({
+          "username": username,
+          "ip": ip
+      });
+      socket.send(connectMsg);
+  }
+
+    // 显示按钮下方的提示(鼠标悬停时显示)
+    function showExecTip(button) {
+        const execTip = button.nextElementSibling;
+        execTip.style.display = 'inline';
+    }
+
+    // 隐藏按钮下方的提示(鼠标移开时隐藏)
+    function hideExecTip(button) {
+        const execTip = button.nextElementSibling;
+        execTip.style.display = 'none';
+    }
+
+    // 执行命令并显示提示
+    function executeCommand(button, command) {
+        console.log(command)
+        sendMessage(command);
+        showExecTip(button);
+    }
+</script>
+</body>
+
+</html>

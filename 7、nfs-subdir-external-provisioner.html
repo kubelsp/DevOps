@@ -1,0 +1,636 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset='UTF-8'>
+    <meta charset='US-ASCII'>
+    <meta name='viewport' content='width=device-width initial-scale=1'>
+
+    <!-- new add -->
+    <title>WebTerminal</title>
+    <link rel="stylesheet" href="./node_modules/xterm/css/xterm.css"/>
+    <script src="./node_modules/xterm/lib/xterm.js"></script>
+    <!-- new add -->
+
+    <link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext'
+          rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" href="./main.css"/>
+
+    <style type='text/css'>
+        /* new add */
+        #terminal {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: calc(50% - 10px); /* 宽度为屏幕宽度的一半 */
+            height: 100%; /* 高度自适应屏幕 */
+            border: 1px solid black;
+            padding: 10px;
+            margin: 0;
+        }
+
+        .click-exec {
+            display: none;
+            color: #FF359A; /* 文本颜色为粉色 */
+            margin-left: 20px; /* 左边距 */
+        }
+
+        .click-exec {
+            background-color: #FF359A;
+            border: 1px solid transparent;
+            border-radius: 3px;
+            box-shadow: rgba(255, 255, 255, .4) 0 1px 0 0 inset;
+            box-sizing: border-box;
+            color: #fff;
+            cursor: pointer;
+            display: inline-block;
+            font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans", sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 1.15385;
+            margin: 0;
+            outline: none;
+            padding: 8px .8em;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            vertical-align: baseline;
+            white-space: nowrap;
+        }
+
+        .click-exec:hover,
+        .click-exec:focus {
+            background-color: #FDA7DF;
+        }
+
+        .click-exec:focus {
+            box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+        }
+
+        .click-exec:active {
+            background-color: #FF359A;
+            box-shadow: none;
+        }
+
+        /* new add */
+
+
+</style><title></title>
+</head>
+
+<div>
+    <input type="text" id="username" placeholder="Username">
+    <input type="text" id="ip" placeholder="IP Address">
+    <button onclick="connect()">Connect</button>
+</div>
+
+<body class='typora-export'>
+<div class='typora-export-content'>
+    <div id='write' class=''><h3 id='7nfs-subdir-external-provisioner'><span>7、nfs-subdir-external-provisioner</span>
+    </h3>
+        <p><span>k8s（pv 与 pvc）动态存储 StorageClass</span></p>
+        <p><span>k8s-1.23.17 持久化存储（nfs动态存储）</span></p>
+        <p><span>1、部署nfs</span></p>
+        <p><span>nfs 服务端（k8s-master）</span></p>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"
+             style="break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap"
+                                               lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline"
+                                                                          style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                class="cm-comment"># 所有服务端节点安装nfs</span></span></pre></div><div class="" style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">yum <span
+                class="cm-attribute">-y</span> install nfs-utils</span></pre></div><div class=""
+                                                                                        style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">systemctl enable nfs-server rpcbind <span
+                class="cm-attribute">--now</span></span></pre></div><div class="" style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                class="cm-comment"># 创建nfs共享目录、授权</span></span></pre></div><div class="" style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                class="cm-builtin">mkdir</span> <span class="cm-attribute">-p</span> /data/k8s &amp;&amp; <span
+                class="cm-builtin">chmod</span> <span class="cm-attribute">-R</span> <span class="cm-number">777</span> /data/k8s</span></pre></div><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;"><span
+                class="cm-comment"># 写入exports</span></span></pre></div><div class="" style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                class="cm-builtin">cat</span> &gt; /etc/exports &lt;&lt; EOF</span></pre></div><div class=""
+                                                                                                    style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">/data/k8s <span
+                class="cm-number">192</span>.168.1.0/24(rw,sync,no_root_squash)</span></pre></div><div class=""
+                                                                                                       style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">EOF</span></pre></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"> </span></pre><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">systemctl reload nfs-server</span></pre></div><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;"> </span></pre></div><div class=""
+                                                                                           style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">使用如下命令进行验证</span></pre></div><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;"><span
+                class="cm-comment"># showmount -e 192.168.1.201</span></span></pre></div><div class=""
+                                                                                              style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Export list <span
+                class="cm-keyword">for</span> <span class="cm-number">192</span>.168.1.201:</span></pre></div><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">/data/k8s <span class="cm-number">192</span>.168.1.0/24</span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 352px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 352px;"></div></div></div></pre>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline"
+                                                                 style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">yum <span
+                class="cm-attribute">-y</span> install nfs-utils</span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 22px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 22px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[1].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline"
+                                                                 style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">systemctl enable nfs-server rpcbind <span
+                class="cm-attribute">--now</span></span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 22px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 22px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[2].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline"
+                                                                 style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                class="cm-builtin">mkdir</span> <span class="cm-attribute">-p</span> /data/k8s &amp;&amp; <span
+                class="cm-builtin">chmod</span> <span class="cm-attribute">-R</span> <span class="cm-number">777</span> /data/k8s</span></pre></div><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line "
+                                                                         role="presentation"><span role="presentation"
+                                                                                                   style="padding-right: 0.1px;"><span
+                class="cm-builtin">cat</span> &gt; /etc/exports &lt;&lt; EOF</span></pre></div><div class=""
+                                                                                                    style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">/data/k8s <span
+                class="cm-number">192</span>.168.1.0/24(rw,sync,no_root_squash)</span></pre></div><div class=""
+                                                                                                       style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">EOF</span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 110px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 110px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[3].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline"
+                                                                 style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">systemctl reload nfs-server</span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 22px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 22px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[4].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline"
+                                                                 style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">showmount <span
+                class="cm-attribute">-e</span> <span
+                class="cm-number">192</span>.168.1.201</span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 22px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 22px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[5].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <p><span>nfs 客户端（k8s-node）</span></p>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline"
+                                                                          style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">yum <span
+                class="cm-attribute">-y</span> install nfs-utils</span></pre></div><pre class=" CodeMirror-line "
+                                                                                        role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;"> </span></pre><div class=""
+                                                                                     style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">systemctl enable rpcbind <span
+                class="cm-attribute">--now</span></span></pre></div><div class="" style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"> </span></pre></div><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">使用如下命令进行验证</span></pre></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                class="cm-comment"># showmount -e 192.168.1.201</span></span></pre><pre class=" CodeMirror-line "
+                                                                                        role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">Export list <span class="cm-keyword">for</span> <span
+                class="cm-number">192</span>.168.1.201:</span></pre><pre class=" CodeMirror-line "
+                                                                         role="presentation"><span role="presentation"
+                                                                                                   style="padding-right: 0.1px;">/data/k8s <span
+                class="cm-number">192</span>.168.1.0/24</span></pre></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 176px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 176px;"></div></div></div></pre>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline"
+                                                                 style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">yum <span
+                class="cm-attribute">-y</span> install nfs-utils</span></pre></div><div class=""
+                                                                                        style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span cm-text=""
+                                                                                                        cm-zwsp="">
+</span></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line "
+                                                                         role="presentation"><span role="presentation"
+                                                                                                   style="padding-right: 0.1px;">systemctl enable rpcbind <span
+                class="cm-attribute">--now</span></span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 66px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 66px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[7].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <p><span>备份</span></p>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline"
+                                                                          style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                class="cm-builtin">mkdir</span> <span class="cm-attribute">-p</span> /data/k8s &amp;&amp; <span
+                class="cm-builtin">chmod</span> <span class="cm-attribute">-R</span> <span class="cm-number">777</span> /data/k8s</span></pre></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span cm-text=""
+                                                                                                        cm-zwsp="">
+</span></span></pre><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">rsync <span class="cm-attribute">-avzP</span> /data/k8s root@192.168.1.203:/data</span></pre></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span cm-text=""
+                                                                                                        cm-zwsp="">
+</span></span></pre><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;"><span class="cm-number">00</span> <span
+                class="cm-number">2</span> * * * rsync <span class="cm-attribute">-avz</span> /data/k8s root@192.168.1.203:/data &amp;&gt;/dev/null</span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 110px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 110px;"></div></div></div></pre>
+        <p><span>2、动态创建 NFS存储（动态存储）</span></p>
+        <blockquote><p><a href='https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner' target='_blank'
+                          class='url'>https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner</a></p>
+        </blockquote>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline"
+                                                                 style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                class="cm-builtin">mkdir</span> ~/nfs-subdir-external-provisioner-4.0.18 &amp;&amp; <span
+                class="cm-builtin">cd</span> ~/nfs-subdir-external-provisioner-4.0.18</span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 44px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 44px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[9].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <blockquote><p><span>版本：nfs-subdir-external-provisioner-4.0.18</span></p>
+            <p>
+                <a href='https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner/tree/nfs-subdir-external-provisioner-4.0.18/deploy'
+                   target='_blank' class='url'>https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner/tree/nfs-subdir-external-provisioner-4.0.18/deploy</a>
+            </p></blockquote>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline"
+                                                                          style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                class="cm-builtin">wget</span> https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner/raw/nfs-subdir-external-provisioner-4.0.18/deploy/deployment.yaml</span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 44px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 44px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[10].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline"
+                                                                 style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                class="cm-builtin">wget</span> https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner/raw/nfs-subdir-external-provisioner-4.0.18/deploy/rbac.yaml</span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 44px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 44px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[11].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline"
+                                                                 style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                class="cm-builtin">wget</span> https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner/raw/nfs-subdir-external-provisioner-4.0.18/deploy/class.yaml</span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 44px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 44px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[12].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline"
+                                                                          style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                class="cm-comment"># 1、修改镜像（默认谷歌k8s.gcr.io）</span></span></pre></div><div class=""
+                                                                                          style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                class="cm-builtin">sed</span> <span class="cm-attribute">-i</span> <span class="cm-string">'s/registry.k8s.io\/sig-storage/dyrnq/g'</span> deployment.yaml</span></pre></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                class="cm-comment"># 2、修改nfs服务端地址</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;"><span class="cm-builtin">sed</span> <span
+                class="cm-attribute">-i</span> <span class="cm-string">'s/10.3.243.101/192.168.1.201/g'</span> deployment.yaml</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                class="cm-comment"># 3、修改存储地址（/data/k8s）</span></span></pre><pre class=" CodeMirror-line "
+                                                                                 role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;"><span class="cm-builtin">sed</span> <span
+                class="cm-attribute">-i</span> <span class="cm-string">'s#\/ifs\/kubernetes#\/data\/k8s#g'</span> deployment.yaml</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span cm-text=""
+                                                                                                        cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                             style="padding-right: 0.1px;"><span
+                class="cm-builtin">sed</span> <span class="cm-attribute">-i</span> <span class="cm-string">'s#nfs-client#nfs-storage#g'</span> class.yaml</span></pre></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 176px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 176px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[13].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <blockquote><p><span>使用这个镜像：dyrnq/nfs-subdir-external-provisioner:v4.0.2 </span></p>
+            <p><span>dockerhub 地址：</span><a href='https://hub.docker.com/r/dyrnq/nfs-subdir-external-provisioner/tags'
+                                            target='_blank' class='url'>https://hub.docker.com/r/dyrnq/nfs-subdir-external-provisioner/tags</a>
+            </p></blockquote>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline"
+                                                                          style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">kubectl apply <span
+                class="cm-attribute">-f</span> .</span></pre></div><pre class=" CodeMirror-line "
+                                                                        role="presentation"><span role="presentation"
+                                                                                                  style="padding-right: 0.1px;"><span
+                cm-text="" cm-zwsp="">
+</span></span></pre><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">kubectl <span class="cm-builtin">get</span> pods <span
+                class="cm-attribute">-n</span> default <span class="cm-attribute">-l</span> <span
+                class="cm-def">app</span><span class="cm-operator">=</span>nfs-client-provisioner</span></pre></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span cm-text=""
+                                                                                                        cm-zwsp="">
+</span></span></pre><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">kubectl <span class="cm-builtin">get</span> storageclass</span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 110px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 110px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[14].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+    </div>
+</div>
+
+
+
+<!-- 添加更多按钮 -->
+</p >
+<div id="terminal"></div> <!-- 用于显示xterm.js终端的元素 -->
+
+<script>
+    const term = new Terminal({
+        cursorBlink: true, // 光标闪烁
+        rows: parseInt(50),
+        cols: parseInt(150),
+    });
+
+    term.open(document.querySelector('#terminal')); // 挂载
+
+    const socket = new WebSocket(`ws://127.0.0.1:22333/webterminal`); // 创建WebSocket连接
+
+    term.onData((data) => { // 网页xterm窗口中有输入的数据
+        socket.send(data); // 通过WebSocket发送给服务器
+    });
+
+    socket.onmessage = (event) => { // 收到来自服务器的WebSocket消息
+        term.write(event.data); // 向xterm对象写入数据
+    };
+
+    function sendMessage(message) {
+
+        message += '\r'; // 添加回车符
+        socket.send(message); // 发送命令
+    }
+
+  function connect() {
+      var usernameInput = document.getElementById("username");
+      var ipInput = document.getElementById("ip");
+      var username = usernameInput.value;
+      var ip = ipInput.value;
+      var connectMsg = JSON.stringify({
+          "username": username,
+          "ip": ip
+      });
+      socket.send(connectMsg);
+  }
+
+    // 显示按钮下方的提示(鼠标悬停时显示)
+    function showExecTip(button) {
+        const execTip = button.nextElementSibling;
+        execTip.style.display = 'inline';
+    }
+
+    // 隐藏按钮下方的提示(鼠标移开时隐藏)
+    function hideExecTip(button) {
+        const execTip = button.nextElementSibling;
+        execTip.style.display = 'none';
+    }
+
+    // 执行命令并显示提示
+    function executeCommand(button, command) {
+        console.log(command)
+        sendMessage(command);
+        showExecTip(button);
+    }
+</script>
+</body>
+
+</html>

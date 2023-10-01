@@ -1,0 +1,564 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset='UTF-8'>
+    <meta charset='US-ASCII'>
+    <meta name='viewport' content='width=device-width initial-scale=1'>
+
+    <!-- new add -->
+    <title>WebTerminal</title>
+    <link rel="stylesheet" href="./node_modules/xterm/css/xterm.css"/>
+    <script src="./node_modules/xterm/lib/xterm.js"></script>
+    <!-- new add -->
+
+    <link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext'
+          rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" href="./main.css"/>
+
+    <style type='text/css'>
+        /* new add */
+        #terminal {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: calc(50% - 10px); /* 宽度为屏幕宽度的一半 */
+            height: 100%; /* 高度自适应屏幕 */
+            border: 1px solid black;
+            padding: 10px;
+            margin: 0;
+        }
+
+        .click-exec {
+            display: none;
+            color: #FF359A; /* 文本颜色为粉色 */
+            margin-left: 20px; /* 左边距 */
+        }
+
+        .click-exec {
+            background-color: #FF359A;
+            border: 1px solid transparent;
+            border-radius: 3px;
+            box-shadow: rgba(255, 255, 255, .4) 0 1px 0 0 inset;
+            box-sizing: border-box;
+            color: #fff;
+            cursor: pointer;
+            display: inline-block;
+            font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans", sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 1.15385;
+            margin: 0;
+            outline: none;
+            padding: 8px .8em;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            vertical-align: baseline;
+            white-space: nowrap;
+        }
+
+        .click-exec:hover,
+        .click-exec:focus {
+            background-color: #FDA7DF;
+        }
+
+        .click-exec:focus {
+            box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+        }
+
+        .click-exec:active {
+            background-color: #FF359A;
+            box-shadow: none;
+        }
+
+        /* new add */
+
+
+    </style>
+    <title></title>
+</head>
+<div>
+    <input type="text" id="username" placeholder="Username">
+    <input type="text" id="ip" placeholder="IP Address">
+    <button onclick="connect()">Connect</button>
+</div>
+<body class='typora-export'>
+<div class='typora-export-content'>
+    <div id='write' class=''><h3 id='5vertical-pod-autoscaler'><span>5、vertical-pod-autoscaler</span></h3>
+        <blockquote><p><span>版本：k8s-v1.23.17</span></p></blockquote>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline"
+                                                                 style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                class="cm-builtin">mkdir</span> <span
+                class="cm-attribute">-p</span> ~/vertical-pod-autoscaler-yml</span></pre></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span cm-text=""
+                                                                                                        cm-zwsp="">
+</span></span></pre><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;"><span class="cm-builtin">cd</span> ~/vertical-pod-autoscaler-yml</span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 66px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 66px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[0].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline"
+                                                                 style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                class="cm-builtin">wget</span> https://github.com/kubernetes/autoscaler/raw/vertical-pod-autoscaler-0.13.0/vertical-pod-autoscaler/deploy/vpa-rbac.yaml</span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 44px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 44px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[1].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline"
+                                                                 style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                class="cm-builtin">wget</span> https://github.com/kubernetes/autoscaler/raw/vertical-pod-autoscaler-0.13.0/vertical-pod-autoscaler/deploy/vpa-v1-crd-gen.yaml</span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 44px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 44px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[2].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline"
+                                                                 style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                class="cm-builtin">wget</span> https://github.com/kubernetes/autoscaler/raw/vertical-pod-autoscaler-0.8.0/vertical-pod-autoscaler/pkg/admission-controller/gencerts.sh</span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 44px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 44px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[3].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline"
+                                                                 style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                class="cm-builtin">wget</span> https://github.com/kubernetes/autoscaler/raw/vertical-pod-autoscaler-0.13.0/vertical-pod-autoscaler/deploy/admission-controller-deployment.yaml</span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 44px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 44px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[4].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded md-focus" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap CodeMirror-focused" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 31px; left: 512px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline"
+                                                                 style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                class="cm-builtin">wget</span> https://github.com/kubernetes/autoscaler/raw/vertical-pod-autoscaler-0.13.0/vertical-pod-autoscaler/deploy/recommender-deployment.yaml</span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 44px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 44px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[5].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline"
+                                                                          style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                class="cm-builtin">wget</span> https://github.com/kubernetes/autoscaler/raw/vertical-pod-autoscaler-0.13.0/vertical-pod-autoscaler/deploy/updater-deployment.yaml</span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 44px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 44px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[6].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline"
+                                                                 style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                class="cm-builtin">sed</span> <span class="cm-attribute">-i</span> <span class="cm-string">'s/Always/IfNotPresent/g'</span> ./*</span></pre></div><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line "
+                                                                         role="presentation"><span role="presentation"
+                                                                                                   style="padding-right: 0.1px;"><span
+                class="cm-builtin">sed</span> <span class="cm-attribute">-i</span> <span class="cm-string">'s/k8s\.gcr\.io\/autoscaling/registry.cn-hangzhou.aliyuncs.com\/acs/g'</span> ./*</span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 88px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 88px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[7].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline"
+                                                                          style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">kubectl apply <span
+                class="cm-attribute">-f</span> vpa-rbac.yaml</span></pre></div><div class=""
+                                                                                    style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">kubectl apply <span
+                class="cm-attribute">-f</span> vpa-v1-crd-gen.yaml</span></pre></div><div class=""
+                                                                                          style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                class="cm-builtin">sh</span> gencerts.sh</span></pre></div><div class="" style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">kubectl apply <span
+                class="cm-attribute">-f</span> admission-controller-deployment.yaml</span></pre></div><div class=""
+                                                                                                           style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">kubectl apply <span
+                class="cm-attribute">-f</span> recommender-deployment.yaml</span></pre></div><div class=""
+                                                                                                  style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">kubectl apply <span
+                class="cm-attribute">-f</span> updater-deployment.yaml</span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 132px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 132px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[8].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <p><span>验证 VPA</span></p>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"
+             style="break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap"
+                                               lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline"
+                                                                          style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                class="cm-builtin">cat</span> &gt; ~/vertical-pod-autoscaler-yml/nginx-deployment-basic.yml &lt;&lt; <span
+                class="cm-string">'EOF'</span></span></pre></div><pre class=" CodeMirror-line "
+                                                                      role="presentation"><span role="presentation"
+                                                                                                style="padding-right: 0.1px;">apiVersion: apps/v1</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">kind: Deployment</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">metadata:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  name: nginx-deployment-basic</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  namespace: default</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  labels:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  app: nginx</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">spec:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  replicas: <span
+                class="cm-number">2</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">  selector:</span></pre><pre class=" CodeMirror-line "
+                                                                                               role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;"> &nbsp;  matchLabels:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  app: nginx</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  template:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  metadata:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  labels:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  app: nginx</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  spec:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  containers:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;<span
+                class="cm-attribute">-</span> name: nginx</span></pre><pre class=" CodeMirror-line "
+                                                                           role="presentation"><span role="presentation"
+                                                                                                     style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  image: nginx:1.25.2-alpine</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  ports:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span
+                class="cm-attribute">-</span> containerPort: <span class="cm-number">80</span></span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                class="cm-attribute">---</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">apiVersion: autoscaling.k8s.io/v1</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">kind: VerticalPodAutoscaler</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">metadata:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  name: nginx-deployment-basic-vpa</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  namespace: default</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">spec:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  targetRef:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  apiVersion: <span
+                class="cm-string">"apps/v1"</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;"> &nbsp;  kind: &nbsp; &nbsp; &nbsp; Deployment</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  name: &nbsp; &nbsp; &nbsp; nginx-deployment-basic</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  updatePolicy:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  updateMode: <span
+                class="cm-string">"Off"</span></span></pre><div class="" style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">EOF</span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 814px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 814px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[9].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline"
+                                                                 style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">kubectl apply <span
+                class="cm-attribute">-f</span> ~/vertical-pod-autoscaler-yml/nginx-deployment-basic.yml</span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 22px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 22px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[10].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div
+                class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline"
+                                                                 style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                class="cm-comment"># 需要等待两分钟，才能返回结果</span></span></pre></div><div class="" style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">kubectl <span
+                class="cm-builtin">get</span> vpa <span class="cm-attribute">-n</span> default</span></pre></div><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line "
+                                                                         role="presentation"><span role="presentation"
+                                                                                                   style="padding-right: 0.1px;">kubectl describe vpa nginx-deployment-basic-vpa <span
+                class="cm-attribute">-n</span> default |tail <span class="cm-attribute">-n</span> <span
+                class="cm-number">16</span></span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 88px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 88px;"></div></div></div></pre>
+        <button onclick="executeCommand(this, document.querySelectorAll('.CodeMirror-code')[11].innerText.trim())" onmouseover="showExecTip(this);" onmouseout="hideExecTip(this);" class="click-exec">执行命令</button>
+        <hr>
+        <p><span>如下：</span></p>
+        <pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"
+             style="break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap"
+                                               lang="shell"><div
+                style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea
+                autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+                style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+                class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                     cm-not-content="true"></div><div
+                class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                             style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+                style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+                role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div
+                class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+                class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline"
+                                                                          style="position: relative;"><div
+                class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+                class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">[root@k8s-master ~]<span
+                class="cm-comment"># kubectl get vpa -n default</span></span></pre></div><pre class=" CodeMirror-line "
+                                                                                              role="presentation"><span
+                role="presentation" style="padding-right: 0.1px;">NAME &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; MODE &nbsp; CPU &nbsp; MEM &nbsp; &nbsp; &nbsp; PROVIDED &nbsp; AGE</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">nginx-deployment-basic-vpa &nbsp; Off &nbsp;  25m &nbsp; 262144k &nbsp; True &nbsp; &nbsp; &nbsp; 5m3s</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">[root@k8s-master ~]<span
+                class="cm-comment"># kubectl describe vpa nginx-deployment-basic-vpa -n default |tail -n 16</span></span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  Recommendation:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  Container Recommendations:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  Container Name:  nginx</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  Lower Bound:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  Cpu: &nbsp; &nbsp; 25m</span></pre><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation"
+                style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  Memory:  262144k</span></pre></div><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  Target:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  Cpu: &nbsp; &nbsp; 25m</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  Memory:  262144k</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  Uncapped Target:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  Cpu: &nbsp; &nbsp; 25m</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  Memory:  262144k</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  Upper Bound:</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  Cpu: &nbsp; &nbsp; 4089m</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  Memory: &nbsp;<span
+                class="cm-number">8765548505</span></span></pre><div class="" style="position: relative;"><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Events: &nbsp; &nbsp; &nbsp; &nbsp;  &lt;none&gt;</span></pre></div></div></div></div></div></div><div
+                style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 462px;"></div><div
+                class="CodeMirror-gutters" style="display: none; height: 462px;"></div></div></div></pre>
+    </div>
+</div>
+
+
+
+<!-- 添加更多按钮 -->
+</p >
+<div id="terminal"></div> <!-- 用于显示xterm.js终端的元素 -->
+
+<script>
+    const term = new Terminal({
+        cursorBlink: true, // 光标闪烁
+        rows: parseInt(50),
+        cols: parseInt(150),
+    });
+
+    term.open(document.querySelector('#terminal')); // 挂载
+
+    const socket = new WebSocket(`ws://127.0.0.1:22333/webterminal`); // 创建WebSocket连接
+
+    term.onData((data) => { // 网页xterm窗口中有输入的数据
+        socket.send(data); // 通过WebSocket发送给服务器
+    });
+
+    socket.onmessage = (event) => { // 收到来自服务器的WebSocket消息
+        term.write(event.data); // 向xterm对象写入数据
+    };
+
+    function sendMessage(message) {
+
+        message += '\r'; // 添加回车符
+        socket.send(message); // 发送命令
+    }
+
+  function connect() {
+      var usernameInput = document.getElementById("username");
+      var ipInput = document.getElementById("ip");
+      var username = usernameInput.value;
+      var ip = ipInput.value;
+      var connectMsg = JSON.stringify({
+          "username": username,
+          "ip": ip
+      });
+      socket.send(connectMsg);
+  }
+    // 显示按钮下方的提示(鼠标悬停时显示)
+    function showExecTip(button) {
+        const execTip = button.nextElementSibling;
+        execTip.style.display = 'inline';
+    }
+
+    // 隐藏按钮下方的提示(鼠标移开时隐藏)
+    function hideExecTip(button) {
+        const execTip = button.nextElementSibling;
+        execTip.style.display = 'none';
+    }
+
+    // 执行命令并显示提示
+    function executeCommand(button, command) {
+        console.log(command)
+        sendMessage(command);
+        showExecTip(button);
+    }
+</script>
+</body>
+
+</html>
