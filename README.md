@@ -64,7 +64,6 @@ EXPOSE 22333
 # 启动Nginx和Go程序
 CMD ["sh", "-c", "nginx -g 'daemon off;' & ./devops-go "]
 EOF
-EOF
 ```
 
 ```shell
