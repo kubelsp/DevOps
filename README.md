@@ -10,6 +10,8 @@ docker run -d --name nginx-go \
     -p 22333:22333 \
     ccr.ccs.tencentyun.com/huanghuanhui/go:go-web-terminal-beta
 ```
+> 浏览器访问：ip+8090
+
 ## 也可以按照下面的dockerfile自定义镜像
 ```shell
 cat > dockerfile << 'EOF'
