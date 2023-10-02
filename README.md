@@ -1,5 +1,16 @@
 # DevOps
-让你轻松快速拥有DevOps环境
+## 让你轻松快速拥有DevOps环境
+
+## 已经做成腾讯云镜像，直接运行下面命令（体验本项目）（beta版本）
+```shell
+docker run -d --name nginx-go \
+    --restart=always \
+    --privileged=true \
+    -p 8090:80 \
+    -p 22333:22333 \
+    ccr.ccs.tencentyun.com/huanghuanhui/go:go-web-terminal-beta
+```
+## 也可以按照下面的dockerfile自定义镜像
 ```shell
 cat > dockerfile << 'EOF'
 # 第一个构建阶段：编译Go应用程序
@@ -64,14 +75,4 @@ docker run -d --name nginx-go \
     -p 8090:80 \
     -p 22333:22333 \
     devops-go:v1
-```
-
-## 已经做成腾讯云镜像，直接运行下面命令（体验本项目）（beta版本）
-```shell
-docker run -d --name nginx-go \
-    --restart=always \
-    --privileged=true \
-    -p 8090:80 \
-    -p 22333:22333 \
-    ccr.ccs.tencentyun.com/huanghuanhui/go:go-web-terminal-beta
 ```
