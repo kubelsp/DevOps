@@ -2,7 +2,7 @@
 # 大佬们，帮忙点个star，谢谢（加群：WeChat：Linux-LAMP）
 ## 本项目能让你轻松快速拥有DevOps环境
 
-## 已经做成腾讯云镜像，直接运行下面命令（体验本项目）（alpha版本）
+## 已经做成腾讯云镜像，直接运行下面命令（体验本项目）推荐使用（alpha版本）
 ```shell
 docker run -d --name nginx-go-alpha \
     --restart=always \
