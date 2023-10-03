@@ -7,8 +7,8 @@
 docker run -d --name nginx-go-alpha \
     --restart=always \
     --privileged=true \
-    -p 3333:80 \
-    -p 33333:22333 \
+    -p 8090:80 \
+    -p 22333:22333 \
     ccr.ccs.tencentyun.com/huanghuanhui/go:go-web-terminal-alpha
 ```
 > 浏览器访问：ip+3333
