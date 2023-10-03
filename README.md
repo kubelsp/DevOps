@@ -2,9 +2,19 @@
 # 大佬们，帮忙点个star，谢谢（加群：WeChat：Linux-LAMP）
 ## 本项目能让你轻松快速拥有DevOps环境
 
+## 已经做成腾讯云镜像，直接运行下面命令（体验本项目）（alpha版本）
+```shell
+docker run -d --name nginx-go-alpha \
+    --restart=always \
+    --privileged=true \
+    -p 3333:80 \
+    -p 33333:22333 \
+    ccr.ccs.tencentyun.com/huanghuanhui/go:go-web-terminal-alpha
+```
+> 浏览器访问：ip+3333
 ## 已经做成腾讯云镜像，直接运行下面命令（体验本项目）（beta版本）
 ```shell
-docker run -d --name nginx-go \
+docker run -d --name nginx-go-beta \
     --restart=always \
     --privileged=true \
     -p 8090:80 \
@@ -13,6 +23,7 @@ docker run -d --name nginx-go \
 ```
 > 浏览器访问：ip+8090
 
+> 两者区别：alpha版本默认初始化的终端是空，beta版本默认使用容器内部的终端（推荐使用（alpha版本））
 ## 也可以按照下面的dockerfile自定义镜像
 ```shell
 cat > dockerfile << 'EOF'
