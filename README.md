@@ -89,6 +89,9 @@ docker run -d --name nginx-go \
     -p 22333:22333 \
     devops-go:v1
 ```
+
+<img width="1547" alt="image" src="https://github.com/kubelsp/DevOps/assets/79031894/7983edac-4551-4519-a162-5f7221d30a63">
+<img width="1547" alt="image" src="https://github.com/kubelsp/DevOps/assets/79031894/702d660f-38a2-4b9d-bf95-52720de23433">
 <img width="1547" alt="image" src="https://github.com/kubelsp/DevOps/assets/79031894/48856fa8-c396-4df7-82b6-a1d331bdc27e">
 
 <img width="1547" alt="image" src="https://github.com/kubelsp/DevOps/assets/79031894/fa7e6901-8a6d-40de-9eb5-3dee50e5ecbf">
